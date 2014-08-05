@@ -1,0 +1,105 @@
+
+1 - to read the sensor data and save separated tracks for each intersection run:
+
+script_for_reading_and_separating_tracks_from_sensor_files.py
+
+2 - to read the individual track text files and export to xml or kml use:
+
+kml_export_from_text.py and xml_export_from_text.py
+
+3 - to read from the individual track text files and clean them and save cleaned text files use:
+
+clean_tracks_from_text.py
+
+If using manual annotation using the script "annotation_script.py" go directly to step 8
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+STEPS FROM HERE ONWARDS TILL BLOCK ENDS, ARE NEEDED ONLY IF USING SVM TO GET INITIAL GROUND TRUTH LABELS
+
+4 - compute features from cleaned text files: (This step needed only for SVM based initial ground truth labeling)
+
+get_feature_vector_from_cleantext_file.py
+
+5 - collect features from all training files and make a text file for input to svm for scaling, training (This step needed only for SVM based initial ground truth labeling)
+
+
+make_label_training_text_file.py
+
+scaling:
+from terminal, (cd to svm dir) ./svm-scale -l -1 -u 1 -s range path_to_train.txt > desired_output_path.scale (range contains scaling data which is to be reused for scaling testing data)
+
+((sample)  ./svm-scale -l -1 -u 1 -s ~/workspace/trackManipulation/rsc/scale_range ~/workspace/trackManipulation/rsc/label_train.txt > ~/workspace/trackManipulation/rsc/label_train.scale
+)
+training:
+from spyder interpreter (using svmutil)  see file svm_script.py in folder ~/software/libsvm-3.18/python/
+
+from terminal : ./svm-train -s 1 -t 1 -b 1 ~/workspace/trackManipulation/rsc/label_train.scale (saves model file in svm code dir by the name label_train.scale.model for this example)
+
+6 - collect features from all testing files and make a text file for input to svm for scaling, testing (This step needed only for SVM based initial ground truth labeling)
+
+
+make_label_testing_text_file.py (note that this must save two files (output feature file and a file containing the names of all files in order in which they were read.
+this order will be used again when reading results and renaming files))
+
+from terminal, (cd to svm dir) ./svm-scale -r range path_to_test.txt > path_to_test.scale
+((sample)  ./svm-scale -r ~/workspace/trackManipulation/rsc/scale_range ~/workspace/trackManipulation/rsc/label_prediction.txt > ~/workspace/trackManipulation/rsc/label_prediction.scale 
+)
+from spyder interpreter, see file svm_script.py in folder ~/software/libsvm-3.18/python/
+
+from terminal :  ./svm-predict -b 1 ~/workspace/trackManipulation/rsc/label_prediction.scale label_train.scale.model ~/workspace/trackManipulation/rsc/prediction.output
+
+
+7 - once labels for all data are known, add them to image file name in /clean_text and re-export kml/xml files that include label information within tags for tracks
+
+to read predicted labels from output file:
+
+read_svm_predictions_from_text.py
+
+write_track_text_files_with_labels.py
+
+
+plot the tracks again with labels (plots with names without labels are to be deleted)
+
+manually correct wrongly labelled track labels (quickly look through image thumbs)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+8 - manually annotate labels (annotation_script.py)
+
+export to xml, re-plot and re-train HMM
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+added utils:
+
+- plot tracks and save images for all:
+
+save_all_track_plots_from_text.py
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+additional notes:
+
+training data has labels.
+
+testing data has no labels. format of text data file requires label so I put labels -99 for testing data, have to see what information svm_predict outputs
+
+to remove tracks from any particular intersection add intersection name in file "src/xml_export_from_text"
+
+to remove particular tracks, add names to file "rsc/tracksWithErrors.txt" and run code in file "src/remove_tracks_with_errors_from_folder_ofcleanedlabelled_texts.py"

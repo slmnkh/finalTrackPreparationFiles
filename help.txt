@@ -1,0 +1,24 @@
+data location: 
+
+spm, text files for June recordings on Zenrin area:
+
+/common/Project/VSLAM-2k/2014_6_17_Rakesh/
+/common/Project/VSLAM-2k/2014_6_18_Rakesh/
+
+
+
+important/relevant file inventory:
+
+1 - gpsDistance.py :: used for computing distance in meters between two points whose latitude and longitude are provided
+
+2 - markProximity.py :: Finds out which points in a track are close to an intersection center.
+                        Returns an array of ones and zeros.
+
+3 - readTracks.py :: returns a 2D numpy array that consists of track locations read from a text file
+
+4 - top level files ::
+
+        - step - 1 ... separateTracks.py : give path to text file from GPS sensor, saves a text file for each track in 
+          vicinity of an intersection (whose center location in lat, lon is provided in def prox in markProximity.py)
+
+        - step - 2 ... XmlExport.py : read the saved text files for each trace and make xml files from them

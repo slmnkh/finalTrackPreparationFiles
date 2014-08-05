@@ -1,0 +1,6 @@
+Middlefield_Ellis 01 37.395867 -122.053874
+Middlefield_Logue 02 37.394303 -122.051627
+Logue_Maude 03 37.397342 -122.050207
+Fairchild_Ellis 04 37.402978 -122.051131
+Ellis_National 05 37.400990 -122.051895
+National_Fairchild 06 37.404168 -122.053366
