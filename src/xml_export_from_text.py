@@ -3,9 +3,9 @@
 
 from lxml import etree as ET
 import glob
-list_of_files = glob.glob("/home/skhokhar/workspace/trackManipulation/rsc/text_files/clean_texts_with_labels/*.txt")
-path_to_save_xmls = '/home/skhokhar/workspace/trackManipulation/rsc/ml_file_exports/xml_files/'
-intersection_labels_file_handle = open('/home/skhokhar/workspace/trackManipulation/rsc/intersectionCenters.txt')
+list_of_files = glob.glob("/home/skhokhar/workspace/trackPreparation/rsc/text_files/clean_texts_with_labels/*.txt")
+path_to_save_xmls = '/home/skhokhar/workspace/trackPreparation/rsc/ml_file_exports/xml_files/'
+intersection_labels_file_handle = open('/home/skhokhar/workspace/trackPreparation/rsc/intersectionCenters.txt')
 intersection_dict = dict(Middlefield_Ellis = 1, Middlefield_Logue = 2, Logue_Maude = 3, Fairchild_Ellis = 4, Ellis_National = 5, National_Fairchild = 6)
 
 
