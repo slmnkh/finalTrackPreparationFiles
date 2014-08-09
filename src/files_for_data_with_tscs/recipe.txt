@@ -1,0 +1,8 @@
+NOTE : must save in one folder the following data for each track :
+
+1 - an xml file containing track data (and a text file. xml file will be generated from text file) 
+
+2 - a folder containing all frames for that track (all images within time stamps of the track data)
+
+3 - a text file containing time stamps for frames in track
+
