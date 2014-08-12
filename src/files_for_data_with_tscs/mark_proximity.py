@@ -13,7 +13,7 @@ def prox(track, centre):
     from gps_util_from_gpspoints import gpsDistance
     
 #     centre = [37.395867, -122.053874]
-    threshold = 30
+    threshold = 50
     proximity = []
     
     for iRow in range(0,track.shape[0]):

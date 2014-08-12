@@ -6,3 +6,13 @@ NOTE : must save in one folder the following data for each track :
 
 3 - a text file containing time stamps for frames in track
 
+STEPS::
+
+get_tracks_from_gps_file.py
+
+make_demo_track_folders.py
+
+extract_images_for_each_track.py
+
+convert_texts_to_xmls.py
+

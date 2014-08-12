@@ -7,10 +7,8 @@ import shutil
 list_of_files = glob.glob("/home/skhokhar/common/people/skhokhar/demo_tracks/run_169/tracks/*.txt")
 for file_name in list_of_files:
     
-    dir = os.path.dirname(file_name[:file_name.index(".")])
-    try:
-        os.stat(dir)
-    except:
+    dir = file_name[:file_name.index(".")]
+    if os.path.isdir(dir) is False:
         os.mkdir(dir)
-    save_path = file_name[:file_name.index(".")]+"/"+file_name[file_name.rindex("/")+1:]
-    shutil.move(file_name, save_path)
+    save_path = file_name[:file_name.index(".")]+"/track.txt"
+    shutil.copyfile(file_name, save_path)

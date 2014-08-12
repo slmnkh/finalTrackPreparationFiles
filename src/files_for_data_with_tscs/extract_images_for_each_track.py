@@ -9,7 +9,7 @@ frames_path = "/home/skhokhar/common/people/skhokhar/framesFrom[2014_7_11_forens
 
 for file_name in list_of_files: # for all files (each containing gps and time data from one track) 
 
-    # read file, get start and end time stamps
+    # read track file, get start and end time stamps
     curr_file_handle = open(file_name, "r")
     lines = curr_file_handle.readlines()
     line_st = lines[0].split(' ')
@@ -33,7 +33,7 @@ for file_name in list_of_files: # for all files (each containing gps and time da
     
     for ind, val in enumerate(indices_in_track):
         
-#        shutil.copyfile(frames_path + "frm%.06d.png"%val,save_path + "frm%.06d.png"%ind)
+        shutil.copyfile(frames_path + "frm%.06d.png"%val,save_path + "frm%.06d.png"%ind)
         print "File %d copied"%ind
         
     
