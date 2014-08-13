@@ -3,8 +3,11 @@
 
 # read a text file and plot the data in one line
 
+from get_data_from_text_file import get_data_from_text_file
 import numpy, seaborn, pandas
 import pylab as plt
+import matplotlib as mpl
+
 file_to_read = "/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_01/resultsOverDistance.txt"
 file_handle = open(file_to_read,"r")
 data = []
@@ -12,18 +15,31 @@ for ind, line in enumerate(file_handle):
     numeric_line = line.split(" ")
     data.append(numeric_line) 
 
-data = numpy.vstack(data)
+data_01 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_01/resultsOverDistance.txt')
+data_02 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_02/resultsOverDistance.txt')
+data_03 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_03/resultsOverDistance.txt')
+data_04 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_04/resultsOverDistance.txt')
+
+
+
 plt.figure()
 plt.hold("on")
-plt.plot(data[:,0], data[:,1])
-plt.axis([10, -15, 0, 100])
+plt.axis([0, 25, 50, 100])
 
-"""
 
-errors to fix:
+plt.plot(data_01[:,1], color = "steelblue", label = 'States: 01')
+plt.plot(data_02[:,1], color = "seagreen", label = 'States: 02')
+plt.plot(data_03[:,1], color = "indianred", label = 'States: 03')
+cfig = plt.plot(data_04[:,1], color = "yellow", label = 'States: 04')
+#cfig = sns.tsplot(data_features_00[:,1], color = "yellow")
 
-axis range shows box where there should be a negative sign
+plt.legend(loc='upper left')
 
-"""
+cfig.get_xaxis().set_minor_locator(mpl.ticker.AutoMinorLocator())
+cfig.get_yaxis().set_minor_locator(mpl.ticker.AutoMinorLocator())
+
+plt.grid(b=True, which='major', color='w', linewidth=1.0)
+plt.grid(b=True, which='minor', color='w', linewidth=0.5)
+
 
 
