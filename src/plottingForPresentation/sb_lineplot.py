@@ -24,6 +24,7 @@ data_01 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingW
 data_02 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_02/resultsOverDistance.txt')
 data_03 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_03/resultsOverDistance.txt')
 data_04 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_04/resultsOverDistance.txt')
+data_05 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/HMMstates_05/resultsOverDistance.txt')
 #data_features_00 = get_data_from_text_file('/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/supplementaryResults_[withroad]/Features_00/resultsOverDistance.txt')
 
 plt.hold(True)
@@ -37,6 +38,7 @@ cfig = sns.tsplot(data_01[:,1], color = "steelblue")
 cfig = sns.tsplot(data_02[:,1], color = "seagreen")
 cfig = sns.tsplot(data_03[:,1], color = "indianred")
 cfig = sns.tsplot(data_04[:,1], color = "yellow")
+cfig = sns.tsplot(data_05[:,1], color = "purple")
 #cfig = sns.tsplot(data_features_00[:,1], color = "yellow")
 #cfig = sns.tsplot(data_03[:,1], data_03[:,0], color = "indianred")
 

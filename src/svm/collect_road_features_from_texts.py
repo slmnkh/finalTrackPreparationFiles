@@ -23,12 +23,12 @@ def print_list_to_file(path_to_file_to_write, list_to_write):
     for item in list_to_write:
         file_handle.write("%s\n" %item)
         
+distance_string = "distance[-15]"
+left_features_list = get_list_of_feature_vectors("/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/featuresForSVM/"+distance_string+"left.txt")
+right_features_list = get_list_of_feature_vectors("/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/featuresForSVM/"+distance_string+"right.txt")
+straight_features_list = get_list_of_feature_vectors("/home/skhokhar/workspace/finalHMMintegratingWorkFromHome/finalHMM_atHome/rsc/featuresForSVM/"+distance_string+"straight.txt")
 
-left_features_list = get_list_of_feature_vectors("/home/skhokhar/workspace/finalHMM/finalHMM/rsc/featuresForSVM/left.txt")
-right_features_list = get_list_of_feature_vectors("/home/skhokhar/workspace/finalHMM/finalHMM/rsc/featuresForSVM/right.txt")
-straight_features_list = get_list_of_feature_vectors("/home/skhokhar/workspace/finalHMM/finalHMM/rsc/featuresForSVM/straight.txt")
-
-training_percentage = 0.8
+training_percentage = 0.9
 
 left_training_list, left_testing_list = get_training_and_testing_lists(left_features_list,training_percentage)
 right_training_list, right_testing_list = get_training_and_testing_lists(right_features_list,training_percentage)
